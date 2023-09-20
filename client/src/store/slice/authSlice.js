@@ -9,9 +9,9 @@ export const authSlice = createSlice({
         user: {}
     },
     reducers: {
-        setCurrentUser: (state, user) => {
-            state.isAuthenticated = !isEmpty(user)
-            state.user = user
+        setCurrentUser: (state, action) => {
+            state.isAuthenticated = !isEmpty(action.payload)
+            state.user = action.payload
         }
     },
 })

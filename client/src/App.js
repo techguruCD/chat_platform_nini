@@ -1,15 +1,34 @@
 // import logo from './logo.svg';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
+import jwt_decode from 'jwt-decode'
 import './App.css';
 import './styles/general.scss';
 import store from './store'
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import routes from './routes'
 import PrivateRoute from "./components/common/PrivateRoute";
 import PublicRoute from "./components/common/PublicRoute";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser } from "./store/slice/authSlice";
+
+// if (localStorage.jwtToken) {
+//   setAuthToken(localStorage.jwtToken)
+//   const decoded = jwt_decode(localStorage.jwtToken)
+//   store.dispatch(setCurrentUser(decoded))
+
+//   // // Check for expired token
+//   // const currentTime = Date.now() / 1000;
+//   // if (decoded.exp < currentTime) {
+//   //   // Logout user
+//   //   store.dispatch(logoutUser());
+//   //   // Clear current Profile
+//   //   store.dispatch(clearCurrentProfile());
+//   //   // Redirect to login
+//   //   window.location.href = "/login";
+//   // }
+// }
 
 function App() {
   return (

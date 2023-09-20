@@ -1,12 +1,14 @@
 import React from 'react'
-import { Route, Redirect } from "react-router-dom"
+import { Route, Navigate } from "react-router-dom"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 const PublicRoute = ({ component: Component, auth, ...rest }) => {
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
     return <>
         {
-            true ? <Component {...rest} /> : <Redirect to="/login" />
+            !isAuthenticated ? <Component {...rest} /> : <><Navigate to="/home" /></>
         }
     </>
 }

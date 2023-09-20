@@ -3,7 +3,7 @@ import './Login.scss';
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { loginUser } from '../store/action/authAction';
 
@@ -18,7 +18,8 @@ const Login = () => {
             email, password
         }))
     }
-
+    const errors = useSelector((state) => state.error.errors)
+    console.log(errors.email)
     return (
         <div className='login-container'>
             <div className='login-area'>
@@ -31,10 +32,12 @@ const Login = () => {
                             <div>
                                 <p>E-mail address:</p>
                                 <input type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                {errors.email && <div className='input-error'>{errors.email}</div>}
                             </div>
                             <div>
                                 <p>Password:</p>
                                 <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                {errors.password && <div className='input-error'>{errors.email}</div>}
                             </div>
                         </div>
                         <div className='button-box'>
