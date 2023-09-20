@@ -1,0 +1,9 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+input,
+button {
+    width: 100%;
+    border: 1px solid $borderColor;
+    outline: none;
+}

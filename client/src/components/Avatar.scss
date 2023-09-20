@@ -1,0 +1,16 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.user-avatar {
+    border-radius: $radiusSize;
+    border: 1px solid $avatarBorderColor;
+    position: relative;
+    @include paddingSize();
+    @include marginLeft();
+    @include avatarCoverSize();
+
+    img {
+        border-radius: $radiusSize;
+        @include avatarSize();
+    }
+}

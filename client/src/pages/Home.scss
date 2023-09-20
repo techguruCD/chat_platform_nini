@@ -1,0 +1,95 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.home-container {
+    width: 100%;
+    height: 100vh;
+    min-width: 260px;
+    @include paddingSize();
+
+    .message-container {
+        background-color: $backgroundColor;
+        border: 1px solid $borderColor;
+        border-radius: $radiusSize;
+        width: 100%;
+        height: 100%;
+        @include paddingSize();
+
+        .to-container {
+            @include marginBottom();
+
+            .to-message-area {
+                border: 1px solid $messageAreaBorderColor;
+                border-top-left-radius: $radiusSize;
+                border-top-right-radius: $radiusSize;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                @include messageAreaHeight();
+
+                .to-message-address {
+                    background-color: rgb(240, 245, 252);
+                    border-bottom: 1px solid $messageAreaBorderColor;
+                    height: 36px;
+                    border-top-left-radius: $radiusSize;
+                    border-top-right-radius: $radiusSize;
+                    padding-left: $paddingSize-sm;
+                    padding-right: $paddingSize-sm;
+                    display: flex;
+                    align-items: center;
+                }
+                .to-message-history {
+                    background-color: white;
+                    flex-grow: 1;
+                    padding: $paddingSize-sm;
+                }
+            }
+        }
+
+        .from-container {
+            .from-message-area {
+                border: 1px solid $messageAreaBorderColor;
+                border-radius: $radiusSize;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                
+                .from-message-address {
+                    background-color: rgb(240, 245, 252);
+                    border-bottom: 1px solid $messageAreaBorderColor;
+                    border-top-left-radius: $radiusSize;
+                    border-top-right-radius: $radiusSize;
+                    height: 36px;
+                }
+
+                .from-message-history {
+                    background-color: white;
+                    flex-grow: 1;
+                    padding: $paddingSize-sm;
+                }
+
+                .from-message-toolbar {
+                    background-color: rgb(240, 245, 252);
+                    border-top: 1px solid $messageAreaBorderColor;
+                    border-bottom-left-radius: $radiusSize;
+                    border-bottom-right-radius: $radiusSize;
+                    height: 36px;
+                }
+            }
+        }
+    }
+}
+
+.user-avatar {
+    border-radius: $radiusSize;
+    border: 1px solid $avatarBorderColor;
+    position: relative;
+    @include paddingSize();
+    @include marginLeft();
+    @include avatarCoverSize();
+
+    img {
+        border-radius: $radiusSize;
+        @include avatarSize();
+    }
+}

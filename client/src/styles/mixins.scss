@@ -1,0 +1,60 @@
+@import './variables.scss';
+
+@mixin paddingSize() {
+    @media only screen and (max-width: 576px) {
+        padding: $paddingSize-sm;
+    }
+    padding: $paddingSize-lg;
+}
+
+@mixin marginLeft() {
+    @media only screen and (max-width: 576px) {
+        margin-left: $paddingSize-sm;
+    }
+    margin-left: $paddingSize-lg;
+}
+
+@mixin marginBottom() {
+    @media only screen and (max-width: 576px) {
+        margin-bottom: $paddingSize-sm;
+    }
+    margin-bottom: $paddingSize-lg;
+}
+
+@mixin messageAreaHeight() {
+    height: calc(100vh - $paddingSize-lg * 7 - $avatarSize-lg - 3px);
+    @media screen and (max-width: 576px) {
+        height: calc(100vh - $paddingSize-sm * 7 - $avatarSize-sm - 3px);
+    }
+}
+
+@mixin avatarSize() {
+    width: $avatarSize-lg;
+    height: $avatarSize-lg;
+    @media screen and (max-width: 576px) {
+        width: $avatarSize-sm;
+        height: $avatarSize-sm;
+    }
+}
+
+@mixin avatarCoverSize() {
+    width: calc($avatarSize-lg + $paddingSize-lg * 2 + 2px);
+    height: calc($avatarSize-lg + $paddingSize-lg * 2 + 2px);
+    @media screen and (max-width: 576px) {
+        width: calc($avatarSize-sm + $paddingSize-sm * 2 + 2px);
+        height: calc($avatarSize-sm + $paddingSize-sm * 2 + 2px);
+    }
+}
+
+@mixin responsiveWidth($width) {
+    width: $width;
+    @media screen and (max-width: 576px) {
+        width: 100%;
+    }
+}
+
+@mixin centerPosition() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

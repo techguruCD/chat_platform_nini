@@ -1,0 +1,52 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    @include paddingSize();
+
+    .login-area {
+        background-color: $backgroundColor;
+        border: 1px solid $borderColor;
+        border-radius: $radiusSize;
+        @include paddingSize();
+        @include responsiveWidth(376px);
+        @include centerPosition();
+
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        .login-form {
+            @include responsiveWidth(256px);
+        }
+
+        .avatar-area {
+            @include centerPosition();
+        }
+
+        .input-form {
+            width: 100%;
+
+            .input-box {
+                margin-top: 20px;
+
+                p {
+                    margin-top: 10px;
+                    margin-bottom: 0;
+                }
+            }
+
+            .button-box {
+                margin-top: 20px;
+
+                button {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
