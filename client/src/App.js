@@ -13,12 +13,14 @@ import PublicRoute from "./components/common/PublicRoute";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser } from "./store/slice/authSlice";
 import socket from "./socket";
+import { setChatTarget } from "./store/action/chatAction";
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken)
   const decoded = jwt_decode(localStorage.jwtToken)
   store.dispatch(setCurrentUser(decoded))
   socket.connect()
+  store.dispatch(setChatTarget())
   // // Check for expired token
   // const currentTime = Date.now() / 1000;
   // if (decoded.exp < currentTime) {

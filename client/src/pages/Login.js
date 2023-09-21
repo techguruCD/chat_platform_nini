@@ -24,7 +24,7 @@ const Login = () => {
             <div className='login-area'>
                 <div className='login-form'>
                     <div className='avatar-area'>
-                        <Avatar imageURL={'msn-icon.png'} marginLeft={0} />
+                        <Avatar imageURL={'/avatar/msn-icon.png'} marginLeft={0} />
                     </div>
                     <form className='input-form' onSubmit={loginSubmit}>
                         <div className='input-box'>
@@ -36,7 +36,7 @@ const Login = () => {
                             <div>
                                 <p>Password:</p>
                                 <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-                                {errors.password && <div className='input-error'>{errors.email}</div>}
+                                {errors.password && <div className='input-error'>{errors.password}</div>}
                             </div>
                         </div>
                         <div className='button-box'>

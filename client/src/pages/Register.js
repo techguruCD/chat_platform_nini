@@ -26,7 +26,7 @@ const Register = () => {
             <div className='login-area'>
                 <div className='login-form'>
                     <div className='avatar-area'>
-                        <Avatar imageURL={'msn-icon.png'} marginLeft={0} />
+                        <Avatar imageURL={'/avatar/msn-icon.png'} marginLeft={0} />
                     </div>
                     <form className='input-form' onSubmit={registerSubmit}>
                         <div className='input-box'>

@@ -15,10 +15,11 @@ import EmojiPicker, {
     SuggestionMode,
     SkinTonePickerLocation
 } from 'emoji-picker-react'
-import { logoutUser, lotoutUser } from '../store/action/authAction'
+import { logoutUser, lotoutUser, uploadAvatar } from '../store/action/authAction'
 import { useEffect, useRef, useState } from 'react';
 import { sendMessage } from '../store/action/chatAction';
 import ContactModal from '../components/modal/ContactModal';
+import { SERVER_URL } from '../config';
 
 const fontFamilies = [
     'Arial',
@@ -74,7 +75,6 @@ const fontFamilies = [
 ]
 
 const MessageItem = ({ message, from, mine }) => {
-    console.log(mine)
     return <div className='message-item'>
         <div className='message-from'>
             {mine ? 'You' : from} :
@@ -106,7 +106,7 @@ const Home = () => {
     }
     const onSend = (e) => {
         e.preventDefault()
-
+        if (target.id === undefined) return;
         dispatch(sendMessage({ content, receiver: target.id }))
 
         setDefaultValue(' ')
@@ -115,16 +115,26 @@ const Home = () => {
     }
     const sendNudge = (e) => {
         e.preventDefault()
-        dispatch(sendMessage({ content: 'Judge sent', receiver: target.id, type: 1}))
+        dispatch(sendMessage({ content: 'Nudge sent', receiver: target.id, type: 1}))
+    }
+    const onAvatarChange = (e) => {
+        console.log(e)
+        if (e.target.files[0])
+            dispatch(uploadAvatar(e.target.files[0]))
+    }
+    const onAvatarDelete = (e) => {
+        dispatch(uploadAvatar(null))
     }
     const messageListRef = useRef()
     const messageEditRef = useRef()
+    const avatarRef = useRef()
     useEffect(() => {
         messageListRef.current.scrollTo(0, messageListRef.current.scrollHeight)
     }, [messages])
 
     function onClick(emojiData, event) {
         messageEditRef.current.focus();
+        console.log(messageEditRef)
         document.execCommand('insertText', false, emojiData.emoji)
     }
     return (
@@ -139,7 +149,7 @@ const Home = () => {
                             {messages.map(message => <MessageItem key={message.id} message={message} mine={message.sender == user.id} from={target.name} />)}
                         </div>
                     </div>
-                    <Avatar imageURL={'msn-icon.png'} />
+                    <Avatar imageURL={target.id?(target.avatar?SERVER_URL + target.avatar:'/avatar/online-avatar-online.png'):'/avatar/msn-icon.png'} onClick={handleShow} />
                 </div>
                 <div className='from-container d-flex'>
                     <div className='from-message-area'>
@@ -155,7 +165,7 @@ const Home = () => {
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Dropdown drop='up'>
-                                <Dropdown.Toggle className='font-selector-icon'>
+                                <Dropdown.Toggle className='font-selector-icon px-2'>
                                     😀
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu className='font-list-container'>
@@ -168,7 +178,9 @@ const Home = () => {
                                     />
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <div className='font-selector-icon' onClick={sendNudge}>😀</div>
+                            <div className='font-selector-icon px-2' onClick={sendNudge}>
+                                <img src='/icons8-phone-vibration-96.png'></img>
+                            </div>
                         </div>
                         <div className='from-message-history'
                             dangerouslySetInnerHTML={{ __html: defaultValue }}
@@ -181,12 +193,13 @@ const Home = () => {
                         </div>
                         <div className='send-button' onClick={onSend}>Send</div>
                     </div>
-                    <Avatar imageURL={'frog-icon.png'} />
+                    <Avatar mine={true} onDelete={onAvatarDelete} imageURL={user.avatar==null?'/avatar/online-avatar-online.png':SERVER_URL+user.avatar} onClick={(e) => {e.preventDefault(); avatarRef.current.click();}}/>
+                    <input type='file' onChange={onAvatarChange} hidden ref={avatarRef}/>
                 </div>
             </div>
-            <Button variant="primary" onClick={handleShow}>
+            {/* <Button variant="primary" onClick={handleShow}>
                 Launch demo modal
-            </Button>
+            </Button> */}
 
             <ContactModal show={show} setModalShow={setShow} />
         </div>
