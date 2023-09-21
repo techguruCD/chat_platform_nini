@@ -1,31 +1,33 @@
 global.connections = []
 let connections = []
+
+const sendUserStatus = (user) => {
+    global.connections.forEach(connection => {
+        if (connection.user && connection.user.id != user.id)
+            connection.emit('updateContact', user)
+    })
+}
+
 const onConnect = (socket) => {
     console.log("socket connected");
     global.connections.push(socket)
     socket.on('userInfo', (data) => {
         socket.user = data
-        global.connections.forEach(connection => {
-            if (connection.user.id != data.id)
-                connection.emit("updateContact", { ...connection.user, online: true })
-        })
+        sendUserStatus({ ...socket.user, online: true })
     })
     socket.on('disconnect', () => {
         console.log('socket disconnected')
         const index = global.connections.findIndex(connection => connection == socket)
         if (index >= 0) global.connections.splice(index, 1)
         if (socket.user) {
-            global.connections.forEach(connection => {
-                if (connection.user)
-                    connection.emit('updatecontact', { ...socket.user, online: false })
-            })
+            sendUserStatus({ ...socket.user, online: false })
         }
     })
 }
 
 const newMessage = (message) => {
     global.connections.forEach(connection => {
-        if (connection.userId == message.from_user || connection.userId == message.to_user) {
+        if (connection.user && (connection.user.id == message.sender || connection.user.id == message.receiver)) {
             connection.emit("newMessage", message)
         }
     })
@@ -40,8 +42,14 @@ const updateUsersWithConnectedState = (_users) => {
     return users;
 }
 
+const isUserConnected = (user) => {
+    return global.connections.findIndex(connection => connection.user && connection.user.id == user.id) >= 0
+}
+
 module.exports = {
     onConnect,
     newMessage,
-    updateUsersWithConnectedState
+    sendUserStatus, 
+    updateUsersWithConnectedState,
+    isUserConnected
 }

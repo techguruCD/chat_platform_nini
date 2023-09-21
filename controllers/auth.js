@@ -1,7 +1,10 @@
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
+const path = require('path')
+const fs = require('fs')
 
+const ioHandler = require('../ioHandler')
 const { models } = require('../sequelize')
 const validateRegisterInput = require('../validation/register')
 const validateLoginInput = require('../validation/login')
@@ -71,7 +74,7 @@ exports.login = (req, res) => {
                 }
             })
 
-        const payLoad = { id: user.id, name: user.name, email: user.email }
+        const payLoad = { id: user.id, name: user.name, email: user.email, avatar: user.avatar }
         jwt.sign(
             payLoad,
             process.env.SECRET_OR_KEY,
@@ -92,4 +95,63 @@ exports.login = (req, res) => {
             }
         })
     })
+}
+
+exports.updateAvatar = (req, res) => {
+    
+    User.findOne({ where: { id: req.user.id } })
+        .then(user => {
+            if (!user)
+                return res.json({
+                    status: 1,
+                    message: { warning: 'Invalid user' }
+                })
+            let filePath = null;
+            let uploadPath = null;
+            const saveUser = () => {
+                user.avatar = filePath
+                user.save().then(user => {
+                    user = JSON.parse(JSON.stringify(user))
+                    ioHandler.sendUserStatus({...user, online: true})
+                    return res.json({
+                        status: 0,
+                        user: user
+                    })
+                }).catch(err => {
+                    return res.json({
+                        status: 1,
+                        message: { warning: 'Please try again later' }
+                    })
+                })
+            }
+            
+            if (req.files && req.files && req.files.avatar) {
+                const file = req.files.avatar;
+                
+                let timestamp = new Date().getTime()
+                fileName = file.name;
+                uploadPath = path.join(__dirname, `..\\upload\\avatar\\${timestamp}`)
+                if (!fs.existsSync(uploadPath))
+                    fs.mkdirSync(uploadPath)
+                uploadPath += `\\${file.name}`
+                filePath = `/upload/avatar/${timestamp}/${file.name}`
+                file.mv(uploadPath, function (err) {
+                    if (err) {
+                        return res.json({
+                            status: 1,
+                            message: 'Please try again later'
+                        })
+                    }
+                    saveUser()
+                })
+            } else {
+                saveUser()
+            }
+        }).catch(err => {
+            console.log(err)
+            return res.json({
+                status: 1,
+                message: 'Please try again later'
+            })
+        })
 }
