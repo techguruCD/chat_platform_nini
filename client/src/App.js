@@ -12,23 +12,24 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import PublicRoute from "./components/common/PublicRoute";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser } from "./store/slice/authSlice";
+import socket from "./socket";
 
-// if (localStorage.jwtToken) {
-//   setAuthToken(localStorage.jwtToken)
-//   const decoded = jwt_decode(localStorage.jwtToken)
-//   store.dispatch(setCurrentUser(decoded))
-
-//   // // Check for expired token
-//   // const currentTime = Date.now() / 1000;
-//   // if (decoded.exp < currentTime) {
-//   //   // Logout user
-//   //   store.dispatch(logoutUser());
-//   //   // Clear current Profile
-//   //   store.dispatch(clearCurrentProfile());
-//   //   // Redirect to login
-//   //   window.location.href = "/login";
-//   // }
-// }
+if (localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken)
+  const decoded = jwt_decode(localStorage.jwtToken)
+  store.dispatch(setCurrentUser(decoded))
+  socket.connect()
+  // // Check for expired token
+  // const currentTime = Date.now() / 1000;
+  // if (decoded.exp < currentTime) {
+  //   // Logout user
+  //   store.dispatch(logoutUser());
+  //   // Clear current Profile
+  //   store.dispatch(clearCurrentProfile());
+  //   // Redirect to login
+  //   window.location.href = "/login";
+  // }
+}
 
 function App() {
   return (

@@ -12,7 +12,8 @@ const sequelize = new Sequelize(
 )
 
 const modelDefiners = [
-    require('../models/User')
+    require('../models/User'),
+    require('../models/Chat')
 ]
 
 for (const modelDefiner of modelDefiners) {

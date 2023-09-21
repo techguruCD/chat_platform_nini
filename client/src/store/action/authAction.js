@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode'
 import { setCurrentUser } from '../slice/authSlice'
 import { setErrors } from '../slice/errorSlice'
 import { SERVER_URL } from '../../config'
-
+import socket from '../../socket'
 import setAuthToken from '../../utils/setAuthToken'
 
 export const loginUser = (param) => dispatch => {
@@ -17,6 +17,7 @@ export const loginUser = (param) => dispatch => {
                 try {
                     const decoded = jwt_decode(token)
                     dispatch(setCurrentUser(decoded))
+                    socket.connect()
                 } catch (err) {
                     dispatch(setCurrentUser({}))
                 }
@@ -32,6 +33,7 @@ export const logoutUser = () => dispatch => {
     localStorage.removeItem('jwtToken')
     setAuthToken(false)
     dispatch(setCurrentUser({}))
+    socket.disconnect()
 }
 
 export const registerUser = (param) => dispatch => {

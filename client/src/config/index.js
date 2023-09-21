@@ -1,1 +1,2 @@
-export const SERVER_URL = "http://localhost:5000"
+export const PRODUCT_MODE = false;
+export const SERVER_URL = PRODUCT_MODE ? "" : "http://localhost:5000"

@@ -19,7 +19,6 @@ const Login = () => {
         }))
     }
     const errors = useSelector((state) => state.error.errors)
-    console.log(errors.email)
     return (
         <div className='login-container'>
             <div className='login-area'>

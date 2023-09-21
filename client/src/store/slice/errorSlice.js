@@ -7,7 +7,6 @@ export const errorSlice = createSlice({
     },
     reducers: {
         setErrors: (state, action) => {
-            console.log(action.payload)
             state.errors = isEmpty(action.payload) ? {} : action.payload
         }
     },

@@ -80,7 +80,7 @@ exports.login = (req, res) => {
                 return res.json({
                     status: 0,
                     user,
-                    token
+                    token: 'Bearer ' + token
                 })
             })
     }).catch(err => {

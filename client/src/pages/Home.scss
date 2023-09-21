@@ -17,6 +17,8 @@
 
         .to-container {
             @include marginBottom();
+            flex-grow: 1;
+            height: calc(100% - 200px);
 
             .to-message-area {
                 border: 1px solid $messageAreaBorderColor;
@@ -25,7 +27,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                @include messageAreaHeight();
+                // @include messageAreaHeight();
 
                 .to-message-address {
                     background-color: rgb(240, 245, 252);
@@ -38,10 +40,27 @@
                     display: flex;
                     align-items: center;
                 }
+
                 .to-message-history {
                     background-color: white;
                     flex-grow: 1;
                     padding: $paddingSize-sm;
+                    height: calc(100% - 23px);
+                    overflow: auto;
+
+                    .message-item {
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+
+                        .message-from {
+                            color: gray;
+                        }
+
+                        .message-content {
+                            padding-left: 20px;
+                            overflow-wrap: anywhere;
+                        }
+                    }
                 }
             }
         }
@@ -53,19 +72,58 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                
+                height: 190px;
+                position: relative;
+
                 .from-message-address {
                     background-color: rgb(240, 245, 252);
                     border-bottom: 1px solid $messageAreaBorderColor;
                     border-top-left-radius: $radiusSize;
                     border-top-right-radius: $radiusSize;
                     height: 36px;
+
+                    .font-selector-icon {
+                        width: unset;
+                        background: none;
+                        color: black;
+                        border: 0px solid transparent;
+                        align-self: center;
+                        cursor: pointer;
+                    }
+
+                    .font-selector-icon::after {
+                        display: none;
+                    }
+
+                    .font-list-container {
+                        max-height: 320px;
+                        overflow: auto;
+                    }
+
+                    // .__EmojiPicker__.epr-emoji-native {
+                    //     font-size: 10pt;
+                    // }
+                }
+
+                .send-button {
+                    border: 1px solid;
+                    border-radius: 10px;
+                    height: fit-content;
+                    padding: 10px;
+                    position: absolute;
+                    right: 20px;
+                    top: 60px;
                 }
 
                 .from-message-history {
                     background-color: white;
                     flex-grow: 1;
                     padding: $paddingSize-sm;
+                    padding-right: 80px;
+
+                    overflow-wrap: anywhere;
+                    overflow-y: auto;
+                    height: -webkit-fill-available;
                 }
 
                 .from-message-toolbar {
@@ -91,5 +149,31 @@
     img {
         border-radius: $radiusSize;
         @include avatarSize();
+    }
+}
+
+.nudge-1 {
+    animation: vibrate 0.4s;
+}
+
+@keyframes vibrate {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+        transform: translateX(-3px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(3px);
     }
 }

@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "client-install": "cd client && npm install",
+    "client-build": "cd client && npm run build",
     "install-all": "npm install && cd client && npm install",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
@@ -25,10 +26,12 @@
     "mysql2": "^3.6.1",
     "nodemon": "^3.0.1",
     "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "sequelize": "^6.33.0",
+    "socket.io": "^4.7.2",
     "validator": "^13.11.0"
   }
 }
