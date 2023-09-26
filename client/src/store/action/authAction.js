@@ -21,7 +21,6 @@ export const loginUser = (param) => dispatch => {
                         const decoded = jwt_decode(token)
                         dispatch(updateNugeFlag(0))
                         dispatch(setCurrentUser(decoded))
-                        console.log(decoded)
                         socket.connect()
                         dispatch(setChatTarget({}))
                     } catch (err) {

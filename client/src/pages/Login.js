@@ -8,14 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../store/action/authAction';
 
 const Login = () => {
-    const [email, setEmail] = useState("")
+    const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
 
     const loginSubmit = (e) => {
         e.preventDefault()
         dispatch(loginUser({
-            email, password
+            name, password
         }))
     }
     const errors = useSelector((state) => state.error.errors)
@@ -29,9 +29,9 @@ const Login = () => {
                     <form className='input-form' onSubmit={loginSubmit}>
                         <div className='input-box'>
                             <div>
-                                <p>E-mail address:</p>
-                                <input type='text' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                                {errors.email && <div className='input-error'>{errors.email}</div>}
+                                <p>Name:</p>
+                                <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+                                {errors.name && <div className='input-error'>{errors.name}</div>}
                             </div>
                             <div>
                                 <p>Password:</p>

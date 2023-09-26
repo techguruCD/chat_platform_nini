@@ -27,7 +27,7 @@ const onConnect = (socket) => {
 
 const newMessage = (message) => {
     global.connections.forEach(connection => {
-        if (connection.user && (connection.user.id == message.sender || connection.user.id == message.receiver)) {
+        if (connection.user && (connection.user.id == message.sender || connection.user.id == message.receiver || message.mode == 1)) {
             connection.emit("newMessage", message)
         }
     })

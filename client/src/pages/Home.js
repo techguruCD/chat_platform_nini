@@ -74,10 +74,10 @@ const fontFamilies = [
     'MS Reference Sans Serif'
 ]
 
-const MessageItem = ({ message, from, mine }) => {
+const MessageItem = ({ message, mine }) => {
     return <div className='message-item'>
         <div className='message-from'>
-            {mine ? 'You' : from} :
+            {mine ? 'You' : message.sendUser.name} :
         </div>
         <div className='message-content' dangerouslySetInnerHTML={{ __html: message.content }}></div>
     </div>
@@ -107,7 +107,7 @@ const Home = () => {
     const onSend = (e) => {
         e.preventDefault()
         if (target.id === undefined) return;
-        dispatch(sendMessage({ content, receiver: target.id }))
+        dispatch(sendMessage({ content, receiver: target.id, mode: target.mode }))
 
         setDefaultValue(' ')
         setTimeout(() => setDefaultValue(''), 1)
@@ -115,10 +115,9 @@ const Home = () => {
     }
     const sendNudge = (e) => {
         e.preventDefault()
-        dispatch(sendMessage({ content: 'Nudge sent', receiver: target.id, type: 1}))
+        dispatch(sendMessage({ content: 'Nudge sent', receiver: target.id, type: 1, mode: target.mode}))
     }
     const onAvatarChange = (e) => {
-        console.log(e)
         if (e.target.files[0])
             dispatch(uploadAvatar(e.target.files[0]))
     }
@@ -134,7 +133,6 @@ const Home = () => {
 
     function onClick(emojiData, event) {
         messageEditRef.current.focus();
-        console.log(messageEditRef)
         document.execCommand('insertText', false, emojiData.emoji)
     }
     return (
@@ -146,10 +144,10 @@ const Home = () => {
                             <span>To: {target.name}</span>
                         </div>
                         <div className='to-message-history' ref={messageListRef}>
-                            {messages.map(message => <MessageItem key={message.id} message={message} mine={message.sender == user.id} from={target.name} />)}
+                            {messages.map(message => <MessageItem key={message.id} message={message} mine={message.sender == user.id} />)}
                         </div>
                     </div>
-                    <Avatar imageURL={target.id?(target.avatar?SERVER_URL + target.avatar:'/avatar/online-avatar-online.png'):'/avatar/msn-icon.png'} onClick={handleShow} />
+                    <Avatar imageURL={target.mode==1?'/avatar/icons8-multiple-users-80.png':(target.id?(target.avatar?SERVER_URL + target.avatar:'/avatar/online-avatar-online.png'):'/avatar/msn-icon.png')} onClick={handleShow} />
                 </div>
                 <div className='from-container d-flex'>
                     <div className='from-message-area'>

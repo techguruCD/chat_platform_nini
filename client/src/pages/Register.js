@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../store/action/authAction';
 
 const Register = () => {
-    const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [password_confirm, setPasswordConfirm] = useState("")
@@ -17,7 +16,7 @@ const Register = () => {
     const registerSubmit = (e) => {
         e.preventDefault()
         dispatch(registerUser({
-            email, password, password_confirm, name
+            password, password_confirm, name
         }))
     }
     const errors = useSelector((state) => state.error.errors)
@@ -30,11 +29,6 @@ const Register = () => {
                     </div>
                     <form className='input-form' onSubmit={registerSubmit}>
                         <div className='input-box'>
-                            <div>
-                                <p>E-mail address:</p>
-                                <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
-                                {errors.email && <div className='input-error'>{errors.email}</div>}
-                            </div>
                             <div>
                                 <p>Username:</p>
                                 <input type='text' value={name} onChange={(e) => setName(e.target.value)} />

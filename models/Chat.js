@@ -25,6 +25,11 @@ module.exports = function (sequelize) {
             defaultValue: 0,
             allowNull: false
         },
+        mode: { // 0: direct, 1: group
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            allowNull: false
+        },
         receiver: {
             type: DataTypes.INTEGER,
             allowNull: false

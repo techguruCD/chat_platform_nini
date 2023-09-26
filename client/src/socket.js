@@ -11,12 +11,14 @@ socket.on('connect', () => {
 })
 const nudgeTimeoutID = 0
 socket.on('newMessage', (message) => {
-    if (message.sender == store.getState().auth.user.id || message.receiver == store.getState().auth.user.id &&
-        message.sender == store.getState().chat.target.id || message.receiver == store.getState().chat.target.id)
+    const { user } = store.getState().auth
+    const { target } = store.getState().chat
+    if (message.mode == 1 && target.mode == 1 || (message.sender == user.id && message.receiver == target.id || message.sender == target.id && message.receiver == user.id)) {
         store.dispatch(addMessage(message))
-    if (message.type == 1 && message.receiver == store.getState().auth.user.id) {
-        store.dispatch(updateNugeFlag(0))
-        setTimeout(() => store.dispatch(updateNugeFlag(1)), 1)
+        if (message.type == 1 && message.sender != user.id) {
+            store.dispatch(updateNugeFlag(0))
+            setTimeout(() => store.dispatch(updateNugeFlag(1)), 1)
+        }
     }
 })
 

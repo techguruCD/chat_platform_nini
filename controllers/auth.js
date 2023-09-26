@@ -13,7 +13,7 @@ const { User } = models
 
 exports.register = (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body)
-    const { email, name, password } = req.body
+    const { name, password } = req.body
 
     if (!isValid)
         return res.json({
@@ -21,15 +21,15 @@ exports.register = (req, res) => {
             errors
         })
 
-    User.findOne({ where: { email } }).then(user => {
+    User.findOne({ where: { name } }).then(user => {
         if (user)
             return res.json({
                 status: 1,
-                errors: { email: "Email is already in use" }
+                errors: { name: "Name is already in use" }
             })
 
         User.create({
-            email, name, password
+            name, password
         }).then(user => {
             return res.json({
                 status: 0,
@@ -39,6 +39,7 @@ exports.register = (req, res) => {
             console.log(err)
             return res.json({
                 status: 1,
+                errors: { name: "Please try again later" },
                 message: {
                     warning: "Please try again later"
                 }
@@ -48,6 +49,7 @@ exports.register = (req, res) => {
         console.log(err)
         return res.json({
             status: 1,
+            errors: { name: "Please try again later" },
             message: {
                 warning: "Please try again later"
             }
@@ -57,7 +59,7 @@ exports.register = (req, res) => {
 
 exports.login = (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body)
-    const { email, password } = req.body
+    const { name, password } = req.body
 
     if (!isValid)
         return res.json({
@@ -65,16 +67,17 @@ exports.login = (req, res) => {
             errors
         })
 
-    User.findOne({ where: { email, password } }).then(user => {
+    User.findOne({ where: { name, password } }).then(user => {
         if (!user)
             return res.json({
                 status: 1,
+                errors: { name: "Invalid User Info" },
                 message: {
                     warning: "Invalid User Info"
                 }
             })
 
-        const payLoad = { id: user.id, name: user.name, email: user.email, avatar: user.avatar }
+        const payLoad = { id: user.id, name: user.name, name: user.name, avatar: user.avatar }
         jwt.sign(
             payLoad,
             process.env.SECRET_OR_KEY,
@@ -90,6 +93,7 @@ exports.login = (req, res) => {
         console.log(err)
         return res.json({
             status: 1,
+            errors: { name: "Please try again later" },
             message: {
                 warning: "Please try again later"
             }
@@ -98,12 +102,13 @@ exports.login = (req, res) => {
 }
 
 exports.updateAvatar = (req, res) => {
-    
+
     User.findOne({ where: { id: req.user.id } })
         .then(user => {
             if (!user)
                 return res.json({
                     status: 1,
+                    errors: { name: 'Invalid user' },
                     message: { warning: 'Invalid user' }
                 })
             let filePath = null;
@@ -112,7 +117,7 @@ exports.updateAvatar = (req, res) => {
                 user.avatar = filePath
                 user.save().then(user => {
                     user = JSON.parse(JSON.stringify(user))
-                    ioHandler.sendUserStatus({...user, online: true})
+                    ioHandler.sendUserStatus({ ...user, online: true })
                     return res.json({
                         status: 0,
                         user: user
@@ -120,14 +125,15 @@ exports.updateAvatar = (req, res) => {
                 }).catch(err => {
                     return res.json({
                         status: 1,
+                        errors: { name: 'Please try again later' },
                         message: { warning: 'Please try again later' }
                     })
                 })
             }
-            
+
             if (req.files && req.files && req.files.avatar) {
                 const file = req.files.avatar;
-                
+
                 let timestamp = new Date().getTime()
                 fileName = file.name;
                 uploadPath = path.join(__dirname, `..\\upload\\avatar\\${timestamp}`)
@@ -139,7 +145,8 @@ exports.updateAvatar = (req, res) => {
                     if (err) {
                         return res.json({
                             status: 1,
-                            message: 'Please try again later'
+                            errors: { name: 'Please try again later' },
+                            message: { warning: 'Please try again later' }
                         })
                     }
                     saveUser()
@@ -151,7 +158,8 @@ exports.updateAvatar = (req, res) => {
             console.log(err)
             return res.json({
                 status: 1,
-                message: 'Please try again later'
+                errors: { name: 'Please try again later' },
+                message: { warning: 'Please try again later' }
             })
         })
 }

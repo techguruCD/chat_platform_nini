@@ -52,7 +52,7 @@ export const setChatTarget = (contact) => dispatch => {
     if (isEmpty(contact)) {
         contact = { name: "MSN Support" }
         dispatch(setTarget(contact))
-        dispatch(setMessages([{ id: 0, content: "Welcome", sender: -1 }]))
+        dispatch(setMessages([{ id: 0, content: "Welcome", sender: -1, sendUser: {name: 'MSN Support'} }]))
     } else {
         dispatch(setTarget(contact))
         dispatch(getMessageList())

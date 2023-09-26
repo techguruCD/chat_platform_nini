@@ -53,6 +53,13 @@ function ContactModal({ show, setModalShow }) {
             </Modal.Header>
             <Modal.Body>
                 <div className='contact-list'>
+                    <ListGroup className='px-1' as="ul">
+                        <ListGroup.Item as="li" action active={selectedTarget.id == -1} className='d-flex align-items-center public-chat-item'
+                            onClick={() => setSelectedTarget({ id: -1, mode: 1, name: 'Public Chat' })}>
+                            <img src='/avatar/icons8-multiple-users-80.png' />
+                            Public Chat
+                        </ListGroup.Item>
+                    </ListGroup>
                     <div className='list-container'>
                         <div className='list-caption' onClick={() => setOnlineCollapsed(!onlineCollapseed)}>
                             <img src={!onlineCollapseed ? 'icons8-minus-48.png' : '/icons8-plus-48.png'}></img>
