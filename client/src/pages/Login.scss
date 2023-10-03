@@ -2,6 +2,17 @@
 @import '../styles/mixins.scss';
 
 .login-container {
+    * {
+        font-family: 'Verdana Bold';
+    }
+
+    input,
+    button {
+        width: 100%;
+        border: 1px solid $borderColor;
+        outline: none;
+    }
+
     width: 100%;
     display: flex;
     justify-content: center;

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import toast from '../../utils/toast'
 import { setCurrentUser } from '../slice/authSlice'
 import { setErrors } from '../slice/errorSlice'
 import { SERVER_URL } from '../../config'
@@ -24,6 +25,7 @@ export const loginUser = (param) => dispatch => {
                         socket.connect()
                         dispatch(setChatTarget({}))
                         dispatch(getContacts())
+                        toast('Sign in successfully', 'success')
                     } catch (err) {
                         dispatch(setCurrentUser({}))
                     }
@@ -49,6 +51,9 @@ export const registerUser = (param) => dispatch => {
             .then(({ data: res }) => {
                 const { status, user, errors } = res
                 dispatch(setErrors(errors))
+                if (status == 0) {
+                    toast('Sign up successfully', 'success')
+                }
                 resolve()
             }).catch(err => {
                 console.error(err)

@@ -15,7 +15,7 @@ friendCont.find('.friend').each(function(i){
 		},{
 			name: 'Richard ♡',
 			// link: 'https://twitter.com/me0wmixgg',
-			link: 'https://x.com/richardheartwi',
+			link: 'https://x.com/richardheartwin',
 			avi: 'https://cdn.discordapp.com/attachments/1147171068134572154/1151148913638785094/Screenshot-4503-compressed.png'
 		},{
 			name: 'Fall Out Boy',
@@ -23,9 +23,9 @@ friendCont.find('.friend').each(function(i){
 			link: 'https://x.com/falloutboy',
 			avi: 'https://25.media.tumblr.com/1a4575a2e698556074ab557e61b4cc41/tumblr_myy5ptzX2l1rew3aco1_500.png'
 		},{
-			name: 'xXR@wRXx',
+			name: 'Ronaldinho',
 			link: 'http://#',
-			avi: 'https://img.buzzfeed.com/buzzfeed-static/static/2014-05/enhanced/webdr06/19/18/enhanced-buzz-3306-1400539654-20.jpg'
+			avi: './image (2).png'
 		},{
 			name: 'Vitalik',
 			link: 'https://x.com/vitalikbuterin',
@@ -33,7 +33,7 @@ friendCont.find('.friend').each(function(i){
 		},{
 			name: 'Gigachad',
 			// link: 'https://twitter.com/Skrillex',
-			link: 'https://x.com/mikehearn',
+			link: 'https://twitter.com/MikeOHearn',
 			avi: 'https://cdn.discordapp.com/attachments/1147171068134572154/1151149450786521228/proof-that-gigachad-is-fake-v0-jfxxgjw1l4ja1.png'
 		},{
 			name: 'Pajeet',
