@@ -8,7 +8,7 @@ const PublicRoute = ({ component: Component, auth, ...rest }) => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
     return <>
         {
-            !isAuthenticated ? <Component {...rest} /> : <><Navigate to="/home" /></>
+            !isAuthenticated ? <Component {...rest} /> : <><Navigate to="/chat/home" /></>
         }
     </>
 }

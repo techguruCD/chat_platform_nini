@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { registerUser } from '../store/action/authAction';
+import { STATIC_PREFIX } from '../config';
 
 const Register = () => {
     const [name, setName] = useState("")
@@ -22,11 +23,11 @@ const Register = () => {
     const errors = useSelector((state) => state.error.errors)
     return (
         <div className='login-container'>
-            <div className='login-area'>
+            <div className='login-area d-flex flex-column'>
+                <div className='login-header'>
+                    <img src={`${STATIC_PREFIX}/2004 Messenger Logo.png`}></img>
+                </div>
                 <div className='login-form'>
-                    <div className='avatar-area'>
-                        <Avatar imageURL={'/avatar/msn-icon.png'} marginLeft={0} />
-                    </div>
                     <form className='input-form' onSubmit={registerSubmit}>
                         <div className='input-box'>
                             <div>
@@ -47,7 +48,9 @@ const Register = () => {
                         </div>
                         <div className='button-box'>
                             <button>Sign Up</button>
-                            <Link to="/login">Sign In</Link>
+                            <div className='mt-2'>
+                                <Link to="/chat/login">Sign In</Link>
+                            </div>
                         </div>
                         {/* <div className='input-area'>
                             <div>Username: </div>

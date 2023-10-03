@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loginUser } from '../store/action/authAction';
+import { STATIC_PREFIX } from '../config';
 
 const Login = () => {
     const [name, setName] = useState("")
@@ -21,27 +22,29 @@ const Login = () => {
     const errors = useSelector((state) => state.error.errors)
     return (
         <div className='login-container'>
-            <div className='login-area'>
+            <div className='login-area d-flex flex-column'>
+                <div className='login-header'>
+                    <img src={`${STATIC_PREFIX}/2004 Messenger Logo.png`}></img>
+                </div>
                 <div className='login-form'>
-                    <div className='avatar-area'>
-                        <Avatar imageURL={'/avatar/msn-icon.png'} marginLeft={0} />
-                    </div>
                     <form className='input-form' onSubmit={loginSubmit}>
                         <div className='input-box'>
                             <div>
                                 <p>Name:</p>
-                                <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+                                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                                 {errors.name && <div className='input-error'>{errors.name}</div>}
                             </div>
                             <div>
                                 <p>Password:</p>
-                                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                                 {errors.password && <div className='input-error'>{errors.password}</div>}
                             </div>
                         </div>
                         <div className='button-box'>
                             <button>Sign In</button>
-                            <Link to="/register">Sign Up</Link>
+                            <div className='mt-2'>
+                                <Link to="/chat/register">Sign Up</Link>
+                            </div>
                         </div>
                         {/* <div className='input-area'>
                             <div>Username: </div>

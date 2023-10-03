@@ -7,18 +7,30 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: $darkColor;
     @include paddingSize();
 
     .login-area {
-        background-color: $backgroundColor;
-        border: 1px solid $borderColor;
+        background-color: $lightColor;
+        border: 2px solid $darkColor;
         border-radius: $radiusSize;
-        @include paddingSize();
         @include responsiveWidth(376px);
         @include centerPosition();
 
-        padding-top: 60px;
+        padding: 0px;
         padding-bottom: 60px;
+
+        .login-header {
+            width: 100%;
+            padding: 60px 10px;
+            background-color: $darkColor;
+            border-top-left-radius: $radiusSize - 3;
+            border-top-right-radius: $radiusSize - 3;
+
+            img {
+                max-width: 100%;
+            }
+        }
 
         .login-form {
             @include responsiveWidth(256px);
@@ -33,10 +45,14 @@
 
             .input-box {
                 margin-top: 20px;
-
                 p {
                     margin-top: 10px;
                     margin-bottom: 0;
+                }
+                input {
+                    border-radius: $radiusSize;
+                    padding: 3px 10px;
+                    color: $darkColor;
                 }
             }
 
@@ -48,6 +64,10 @@
                 margin-top: 20px;
 
                 button {
+                    border-radius: $radiusSize;
+                    border: 1px solid $darkColor;
+                    background-color: $darkColor;
+                    color: white;
                     margin-top: 20px;
                 }
             }

@@ -5,7 +5,7 @@ import { setErrors } from '../slice/errorSlice'
 import { SERVER_URL } from '../../config'
 import socket from '../../socket'
 import setAuthToken from '../../utils/setAuthToken'
-import { setChatTarget } from './chatAction'
+import { getContacts, setChatTarget } from './chatAction'
 import { updateNugeFlag } from '../slice/chatSlice'
 
 export const loginUser = (param) => dispatch => {
@@ -23,6 +23,7 @@ export const loginUser = (param) => dispatch => {
                         dispatch(setCurrentUser(decoded))
                         socket.connect()
                         dispatch(setChatTarget({}))
+                        dispatch(getContacts())
                     } catch (err) {
                         dispatch(setCurrentUser({}))
                     }

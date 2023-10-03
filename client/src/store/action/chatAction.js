@@ -27,6 +27,9 @@ export const getContacts = () => dispatch => {
                 const { status, users, errors } = res
                 dispatch(setErrors(errors))
                 dispatch(setContacts(users))
+                if (status == 0) {
+                    dispatch(setChatTarget({ id: -1, mode: 1, name: 'Public Chat' }))
+                }
                 resolve()
             }).catch(err => {
                 console.error(err)

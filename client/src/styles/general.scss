@@ -1,6 +1,20 @@
 @import './variables.scss';
 @import './mixins.scss';
 
+@font-face {
+    font-family: "Verdana Bold";
+    src: url("https://db.onlinewebfonts.com/t/a2b4dc9afc18e76cfcaa0071fa7cd0da.eot");
+    src: url("https://db.onlinewebfonts.com/t/a2b4dc9afc18e76cfcaa0071fa7cd0da.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/a2b4dc9afc18e76cfcaa0071fa7cd0da.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/a2b4dc9afc18e76cfcaa0071fa7cd0da.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/a2b4dc9afc18e76cfcaa0071fa7cd0da.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/a2b4dc9afc18e76cfcaa0071fa7cd0da.svg#Verdana Bold")format("svg");
+}
+
+body, div {
+    font-family: 'Verdana Bold';
+}
+
 input,
 button {
     width: 100%;

@@ -17,15 +17,16 @@ const io = require('socket.io')(httpServer, {
     transports: ["websocket"]
 })
 
-const PORT = 5000;
+const PORT = 3000;
 
 app.use(fileUpload())
 app.use(passport.initialize())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
-app.use('/', express.static(path.resolve(__dirname, 'client/build')));
+app.use('/chat', express.static(path.resolve(__dirname, 'client/build')));
 app.use('/upload', express.static(path.resolve(__dirname, 'upload')));
+app.use('/main', express.static(path.resolve(__dirname, 'client/main')));
 app.use('/', routes)
 require('./passport')(passport)
 

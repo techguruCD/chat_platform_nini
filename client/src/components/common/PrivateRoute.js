@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
     return <>
         {
-            isAuthenticated ? <Component {...rest} /> : <><Navigate to="/login" /></>
+            isAuthenticated ? <Component {...rest} /> : <><Navigate to="/chat/login" /></>
         }
     </>
 }

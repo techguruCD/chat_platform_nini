@@ -1,0 +1,479 @@
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.is-online {
+  width: 100%;
+  max-width: 80px;
+  height: 20px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/onlinenow.gif');
+  background-size: contain;
+  background-position: center left;
+  background-repeat: no-repeat;
+  margin: 5px 0;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.inline-list.footer {
+  text-align: center;
+}
+ul.inline-list li {
+  display: inline-block;
+}
+ul.inline-list li:after {
+  content: '|';
+  margin: 0 6px 0 10px;
+}
+ul.inline-list li:last-child:after {
+  content: '';
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #EBEBEB;
+}
+html .main-body,
+body .main-body {
+  max-width: 1000px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+html .main-body nav,
+body .main-body nav {
+  color: #fff;
+  background-color: #0047AB;
+  background-image: url('https://media.discordapp.net/attachments/1147171068134572154/1151161010300932187/2004_COIN_2.png?width=1440&height=509');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+html .main-body nav div > a,
+body .main-body nav div > a {
+  color: #fff;
+}
+html .main-body nav .nav-top,
+body .main-body nav .nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+html .main-body nav .nav-top a,
+body .main-body nav .nav-top a {
+  margin: 0 5px;
+}
+html .main-body nav .nav-top label ~ label,
+body .main-body nav .nav-top label ~ label {
+  margin-left: 10px;
+}
+html .main-body nav .nav-middle,
+body .main-body nav .nav-middle {
+  width: 100%;
+  height: 150px;
+}
+html .main-body nav .nav-bottom,
+body .main-body nav .nav-bottom {
+  background-color: #73AAD6;
+  text-align: center;
+  padding: 5px 0;
+}
+html .main-body nav .nav-bottom ul li:after,
+body .main-body nav .nav-bottom ul li:after {
+  color: #000;
+}
+html .main-body nav .nav-bottom ul li a,
+body .main-body nav .nav-bottom ul li a {
+  font-size: 12px;
+  text-transform: capitalize;
+  color: #fff;
+}
+html .main-body .profile-body,
+body .main-body .profile-body {
+  width: 100%;
+  display: inline-block;
+  font-size: 0;
+}
+html .main-body .profile-body .col,
+body .main-body .profile-body .col {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  padding: 10px 20px;
+}
+html .main-body .profile-body .col + .col,
+body .main-body .profile-body .col + .col {
+  width: 60%;
+}
+html .main-body .profile-body .col .identity,
+body .main-body .profile-body .col .identity {
+  width: 100%;
+  font-size: 0;
+}
+html .main-body .profile-body .col .identity .avatar,
+body .main-body .profile-body .col .identity .avatar,
+html .main-body .profile-body .col .identity .details,
+body .main-body .profile-body .col .identity .details {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+}
+html .main-body .profile-body .col .identity .avatar,
+body .main-body .profile-body .col .identity .avatar {
+  width: 50%;
+  text-align: center;
+  font-size: 12px;
+}
+html .main-body .profile-body .col .identity .avatar img,
+body .main-body .profile-body .col .identity .avatar img {
+  max-width: 100%;
+}
+html .main-body .profile-body .col .identity .details,
+body .main-body .profile-body .col .identity .details {
+  width: 50%;
+  padding-left: 20px;
+  font-size: 14px;
+}
+html .main-body .profile-body .col .identity .details ul li,
+body .main-body .profile-body .col .identity .details ul li {
+  line-height: 1.25;
+}
+html .main-body .profile-body .col .identity .details ul li:last-child,
+body .main-body .profile-body .col .identity .details ul li:last-child {
+  margin-top: 30px;
+}
+html .main-body .profile-body .col .small-panel,
+body .main-body .profile-body .col .small-panel {
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  border: 2px solid #73AAD6;
+}
+html .main-body .profile-body .col .small-panel .panel-header,
+body .main-body .profile-body .col .small-panel .panel-header {
+  background-color: #73AAD6;
+  color: #fff;
+  font-weight: 700;
+  padding: 1px 15px;
+}
+html .main-body .profile-body .col .small-panel .row,
+body .main-body .profile-body .col .small-panel .row {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 0 0 5px;
+  font-size: 0;
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row,
+body .main-body .profile-body .col .small-panel.contact-panel .row {
+  height: 29px;
+  padding: 0;
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .btn,
+body .main-body .profile-body .col .small-panel.contact-panel .row .btn {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  font-size: 14px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-1,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-1 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/sendMailIcon.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-2,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-2 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/forwardMailIcon.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-3,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-3 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/addFriendIcon.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-4,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-4 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/addFavoritesIcon.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-5,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-5 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/messagefriend.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-6,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-6 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/blockuser.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-7,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-7 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/icon_add_to_group.gif');
+}
+html .main-body .profile-body .col .small-panel.contact-panel .row .act-8,
+body .main-body .profile-body .col .small-panel.contact-panel .row .act-8 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/396624/icon_rank_user4.gif');
+}
+html .main-body .profile-body .col .small-panel.m-details-panel,
+body .main-body .profile-body .col .small-panel.m-details-panel {
+  padding-bottom: 5px;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row,
+body .main-body .profile-body .col .small-panel.m-details-panel .row {
+  display: flex;
+  align-items: stretch;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col,
+body .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col {
+  display: inline-block;
+  width: 40%;
+  font-size: 14px;
+  padding: 0 5px 0 0;
+  align-self: stretch;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col:first-child p,
+body .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col:first-child p {
+  font-weight: 700;
+  color: #4c92ca;
+  text-transform: capitalize;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col:last-child,
+body .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col:last-child {
+  width: 60%;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col:last-child p,
+body .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col:last-child p {
+  background-color: #D5E7FB;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col p,
+body .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col p {
+  background-color: #B5D2FA;
+  padding: 5px;
+  margin: 0;
+  height: 100%;
+}
+html .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col p a,
+body .main-body .profile-body .col .small-panel.m-details-panel .row .sm-col p a {
+  color: #DD1900;
+  text-decoration: underline;
+}
+html .main-body .profile-body .col .profile-section,
+body .main-body .profile-body .col .profile-section {
+  width: 100%;
+}
+html .main-body .profile-body .col .profile-section .section-header,
+body .main-body .profile-body .col .profile-section .section-header {
+  background-color: #FFD6A8;
+  color: #FF7B00;
+  font-weight: 700;
+  padding: 2px 20px;
+  margin-bottom: 10px;
+}
+html .main-body .profile-body .col .profile-section .section-subheader,
+body .main-body .profile-body .col .profile-section .section-subheader {
+  font-weight: 700;
+  color: #FF7B00;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+html .main-body .profile-body .col .profile-section .section-subheader + p,
+body .main-body .profile-body .col .profile-section .section-subheader + p {
+  margin-left: 10px;
+}
+html .main-body .profile-body .col .profile-section b,
+body .main-body .profile-body .col .profile-section b {
+  font-weight: normal;
+  color: #DD1900;
+}
+html .main-body .profile-body .col.user-content .top-banner,
+body .main-body .profile-body .col.user-content .top-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 130px;
+  width: 100%;
+  border: 3px solid #000;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+html .main-body .profile-body .col.user-content .top-banner h1,
+body .main-body .profile-body .col.user-content .top-banner h1 {
+  margin: 0;
+  font-size: 23px;
+}
+html .main-body .profile-body .col.user-content .friend-count,
+body .main-body .profile-body .col.user-content .friend-count {
+  font-weight: 700;
+}
+html .main-body .profile-body .col.user-content .friend-grid,
+body .main-body .profile-body .col.user-content .friend-grid {
+  width: 100%;
+}
+html .main-body .profile-body .col.user-content .friend-grid .row,
+body .main-body .profile-body .col.user-content .friend-grid .row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+html .main-body .profile-body .col.user-content .friend-grid .row .friend,
+body .main-body .profile-body .col.user-content .friend-grid .row .friend {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+html .main-body .profile-body .col.user-content .friend-grid .row .friend:hover a,
+body .main-body .profile-body .col.user-content .friend-grid .row .friend:hover a {
+  text-decoration: underline;
+}
+html .main-body .profile-body .col.user-content .friend-grid .row .friend:hover img,
+body .main-body .profile-body .col.user-content .friend-grid .row .friend:hover img {
+  border: 2px solid #73AAD6;
+}
+html .main-body .profile-body .col.user-content .friend-grid .row .friend a,
+body .main-body .profile-body .col.user-content .friend-grid .row .friend a {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+html .main-body .profile-body .col.user-content .friend-grid .row .friend img,
+body .main-body .profile-body .col.user-content .friend-grid .row .friend img {
+  width: 100%;
+  border: 2px solid #0047AB;
+  vertical-align: top;
+}
+html .main-body .profile-body .col.user-content .view-all-f,
+body .main-body .profile-body .col.user-content .view-all-f {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  color: #DD1900;
+  font-weight: 700;
+  margin: 10px 0;
+  font-size: 14px;
+}
+html .main-body .profile-body .col.user-content .comment-details,
+body .main-body .profile-body .col.user-content .comment-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+html .main-body .profile-body .col.user-content .comment-details .comments-to-display,
+body .main-body .profile-body .col.user-content .comment-details .comments-to-display {
+  font-weight: 700;
+}
+html .main-body .profile-body .col.user-content .comment-stream,
+body .main-body .profile-body .col.user-content .comment-stream {
+  width: 100%;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment,
+body .main-body .profile-body .col.user-content .comment-stream .comment {
+  width: 100%;
+  display: flex;
+  background-color: #FBEACC;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment.is--posting,
+body .main-body .profile-body .col.user-content .comment-stream .comment.is--posting {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment.is--posting .dp-group,
+body .main-body .profile-body .col.user-content .comment-stream .comment.is--posting .dp-group {
+  max-width: 120px;
+  overflow: hidden;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .dp-group,
+body .main-body .profile-body .col.user-content .comment-stream .comment .dp-group,
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont,
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont {
+  padding: 15px;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .dp-group,
+body .main-body .profile-body .col.user-content .comment-stream .comment .dp-group {
+  background-color: #FFD6A8;
+  text-align: center;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .dp-group a,
+body .main-body .profile-body .col.user-content .comment-stream .comment .dp-group a {
+  font-weight: 200;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .dp-group img,
+body .main-body .profile-body .col.user-content .comment-stream .comment .dp-group img {
+  width: 100%;
+  max-height: 150px;
+  margin: 10px 0;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .dp-group p[contenteditable],
+body .main-body .profile-body .col.user-content .comment-stream .comment .dp-group p[contenteditable] {
+  padding: 5px 10px;
+  background-color: #fff;
+  outline: 2px dashed #FFD6A8;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont,
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont {
+  flex-grow: 2;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .post-info,
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .post-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .post-info .date,
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .post-info .date {
+  font-weight: 700;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .post-info .c-actions,
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .post-info .c-actions {
+  text-align: right;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .message-body,
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .message-body {
+  font-size: 12px;
+  line-height: 16px;
+}
+html .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .message-body[contenteditable],
+body .main-body .profile-body .col.user-content .comment-stream .comment .comment-cont .message-body[contenteditable] {
+  padding: 5px 10px;
+  background-color: #fff;
+  outline: 2px dashed #FFD6A8;
+}
+html .main-body .profile-body a,
+body .main-body .profile-body a {
+  font-weight: 700;
+  color: #0047AB;
+}
+html footer,
+body footer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+html footer ul li a,
+body footer ul li a {
+  color: #0047AB;
+  text-decoration: underline;
+}
+
+.chat-link {
+  cursor: pointer;
+}

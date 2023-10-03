@@ -5,143 +5,225 @@
     width: 100%;
     height: 100vh;
     min-width: 260px;
-    @include paddingSize();
 
-    .message-container {
-        background-color: $backgroundColor;
-        border: 1px solid $borderColor;
-        border-radius: $radiusSize;
+    .home-header {
+        background-color: $darkColor;
         width: 100%;
-        height: 100%;
+        height: $headerHeight;
+        align-items: center;
+
+        .logo-container {
+            margin-left: 30px;
+            height: fit-content;
+        }
+    }
+
+    .message-out-container {
+        height: calc(100% - $headerHeight);
         @include paddingSize();
 
-        .to-container {
-            @include marginBottom();
-            flex-grow: 1;
-            height: calc(100% - 200px);
+        .message-container {
+            background-color: $lightColor;
+            border: 0px solid $borderColor;
+            border-radius: $radiusSize;
+            width: 100%;
+            height: 100%;
+            @include paddingSize();
+            @include gapSize();
 
-            .to-message-area {
-                border: 1px solid $messageAreaBorderColor;
-                border-top-left-radius: $radiusSize;
-                border-top-right-radius: $radiusSize;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                // @include messageAreaHeight();
+            .message-area {
+                flex-grow: 100;
+                width: 1px;
 
-                .to-message-address {
-                    background-color: rgb(240, 245, 252);
-                    border-bottom: 1px solid $messageAreaBorderColor;
-                    height: 36px;
-                    border-top-left-radius: $radiusSize;
-                    border-top-right-radius: $radiusSize;
-                    padding-left: $paddingSize-sm;
-                    padding-right: $paddingSize-sm;
-                    display: flex;
-                    align-items: center;
-                }
-
-                .to-message-history {
-                    background-color: white;
+                .to-container {
+                    @include marginBottom();
                     flex-grow: 1;
-                    padding: $paddingSize-sm;
-                    height: calc(100% - 23px);
-                    overflow: auto;
+                    height: calc(100% - 200px);
 
-                    .message-item {
-                        margin-top: 5px;
-                        margin-bottom: 5px;
+                    .to-message-area {
+                        // border: 1px solid $messageAreaBorderColor;
+                        @include messageContainerBorder();
+                        border-radius: $radiusSize;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        // @include messageAreaHeight();
 
-                        .message-from {
-                            color: gray;
+                        .to-message-address {
+                            background-color: rgb(240, 245, 252);
+                            border-bottom: 1px solid $messageAreaBorderColor;
+                            height: 36px;
+                            border-top-left-radius: $radiusSize;
+                            border-top-right-radius: $radiusSize;
+                            padding-left: $paddingSize-sm;
+                            padding-right: $paddingSize-sm;
+                            display: flex;
+                            align-items: center;
                         }
 
-                        .message-content {
-                            padding-left: 20px;
+                        .to-message-history {
+                            background-color: white;
+                            flex-grow: 1;
+                            padding: $paddingSize-sm;
+                            height: calc(100% - 23px);
+                            overflow: auto;
+                            border-radius: $radiusSize;
+
+                            .message-item {
+                                color: $darkColor;
+                                margin-top: 5px;
+                                margin-bottom: 5px;
+
+                                .avatar-container {
+                                    height: 20px;
+                                    img {
+                                        height: 100%;
+                                        width: auto;
+                                        vertical-align: unset;
+                                    }
+                                }
+
+                                .contact-name {
+                                    margin-left: 10px;
+                                }
+
+                                .message-content {
+                                    overflow-wrap: anywhere;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .from-container {
+                    .from-message-area {
+                        border-radius: $radiusSize;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        height: 190px;
+                        position: relative;
+                        @include messageContainerBorder();
+
+                        .from-message-address {
+                            background-color: $darkColor;
+                            border-top-left-radius: $radiusSize - 4;
+                            border-top-right-radius: $radiusSize - 4;
+                            height: 36px;
+
+                            .font-selector-icon {
+                                width: unset;
+                                background: none;
+                                color: black;
+                                border: 0px solid transparent;
+                                align-self: center;
+                                cursor: pointer;
+                                display: flex;
+
+                                img {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+
+                            .font-selector-icon::after {
+                                display: none;
+                            }
+
+                            .font-list-container {
+                                max-height: 320px;
+                                overflow: auto;
+                            }
+
+                            // .__EmojiPicker__.epr-emoji-native {
+                            //     font-size: 10pt;
+                            // }
+                        }
+
+                        .send-button {
+                            border: 1px solid;
+                            border-radius: 10px;
+                            height: fit-content;
+                            padding: 10px;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 40px;
+                            cursor: pointer;
+                            background-color: $darkColor;
+                            color: white;
+                        }
+
+                        .from-message-history {
+                            background-color: white;
+                            flex-grow: 1;
+                            padding: $paddingSize-sm;
+                            padding-right: 80px;
+
                             overflow-wrap: anywhere;
+                            overflow-y: auto;
+                            height: -webkit-fill-available;
+
+                            color: $darkColor;
+                        }
+
+                        .from-message-toolbar {
+                            background-color: rgb(240, 245, 252);
+                            border-top: 1px solid $messageAreaBorderColor;
+                            border-bottom-left-radius: $radiusSize;
+                            border-bottom-right-radius: $radiusSize;
+                            height: 36px;
                         }
                     }
                 }
             }
-        }
 
-        .from-container {
-            .from-message-area {
-                border: 1px solid $messageAreaBorderColor;
-                border-radius: $radiusSize;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                height: 190px;
-                position: relative;
+            .contact-area {
+                width: 220px;
 
-                .from-message-address {
-                    background-color: rgb(240, 245, 252);
-                    border-bottom: 1px solid $messageAreaBorderColor;
-                    border-top-left-radius: $radiusSize;
-                    border-top-right-radius: $radiusSize;
-                    height: 36px;
-
-                    .font-selector-icon {
-                        width: unset;
-                        background: none;
-                        color: black;
-                        border: 0px solid transparent;
-                        align-self: center;
-                        cursor: pointer;
-                        display: flex;
-                        img {
-                            width: 20px;
-                            height: 20px;
-                        }
-                    }
-
-                    .font-selector-icon::after {
-                        display: none;
-                    }
-
-                    .font-list-container {
-                        max-height: 320px;
-                        overflow: auto;
-                    }
-
-                    // .__EmojiPicker__.epr-emoji-native {
-                    //     font-size: 10pt;
-                    // }
-                }
-
-                .send-button {
-                    border: 1px solid;
-                    border-radius: 10px;
-                    height: fit-content;
-                    padding: 10px;
-                    position: absolute;
-                    right: 20px;
-                    top: 60px;
+                .public-chat-button {
+                    color: $darkColor;
+                    background-color: white;
+                    border: 4px solid $darkColor;
+                    border-radius: $radiusSize;
+                    font-size: 20pt;
+                    text-align: center;
+                    padding: 13px;
                     cursor: pointer;
                 }
 
-                .from-message-history {
-                    background-color: white;
-                    flex-grow: 1;
-                    padding: $paddingSize-sm;
-                    padding-right: 80px;
-
-                    overflow-wrap: anywhere;
-                    overflow-y: auto;
-                    height: -webkit-fill-available;
+                .public-chat-button.active {
+                    color: white;
+                    background-color: $darkColor;
                 }
 
-                .from-message-toolbar {
-                    background-color: rgb(240, 245, 252);
-                    border-top: 1px solid $messageAreaBorderColor;
-                    border-bottom-left-radius: $radiusSize;
-                    border-bottom-right-radius: $radiusSize;
-                    height: 36px;
+                .contact-list-container {
+                    margin-top: 10px;
+                    .contact-item {
+                        color: $darkColor;
+                        border-radius: $radiusSize;
+                        .chat-button {
+                            border-radius: 500px;
+                            background-color: $darkColor;
+                            color: white;
+                            padding: 3px 10px;
+                            font-size: 8pt;
+                            height: fit-content;
+                            cursor: pointer;
+                        }
+                    }
+                    .contact-item.active {
+                        background-color: $darkColor;
+                        color: white;
+                        .chat-button {
+                            background-color: white;
+                            color: $darkColor
+                        }
+                    }
                 }
             }
         }
     }
+
 }
 
 .user-avatar {
@@ -163,14 +245,17 @@
         top: 5px;
         width: 40px;
         height: 40px;
+
         @media screen and (max-width: 576px) {
             width: 20px;
             height: 20px;
         }
+
         img {
             border-radius: unset;
             width: 40px;
             height: 40px;
+
             @media screen and (max-width: 576px) {
                 width: 20px;
                 height: 20px;
