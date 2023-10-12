@@ -17,7 +17,7 @@ const io = require('socket.io')(httpServer, {
     transports: ["websocket"]
 })
 
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(fileUpload())
 app.use(passport.initialize())
